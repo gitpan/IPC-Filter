@@ -1,3 +1,7 @@
+version 0.001; 2004-10-29
+
+  * include copyright notice in lib/IPC/Filter.pm
+
 version 0.000; 2004-10-29
 
   * initial released version

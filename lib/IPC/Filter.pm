@@ -29,7 +29,7 @@ use IO::Poll 0.01 qw(POLLIN POLLOUT POLLERR POLLHUP);
 use POSIX qw(_exit);
 use Symbol qw(gensym);
 
-our $VERSION = "0.000";
+our $VERSION = "0.001";
 
 our @ISA = qw(Exporter);
 
@@ -150,5 +150,24 @@ sub filter($@) {
 			$status >> 8, "\n", @err);
 	}
 }
+
+=back
+
+=head1 SEE ALSO
+
+L<IPC::Open2>
+
+=head1 AUTHOR
+
+Andrew Main (Zefram) <zefram@fysh.org>
+
+=head1 COPYRIGHT
+
+Copyright (C) 2004 Andrew Main (Zefram) <zefram@fysh.org>
+
+This module is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.
+
+=cut
 
 1;
