@@ -4,7 +4,7 @@ IPC::Filter - filter data through an external process
 
 =head1 SYNOPSIS
 
-	use _::IPC::Filter qw(filter);
+	use IPC::Filter qw(filter);
 
 	$compressed_data = filter($data, "bzip2");
 
@@ -21,7 +21,6 @@ use warnings;
 use strict;
 
 use Errno 1.00 qw(EPIPE);
-use Exporter;
 use IPC::Open3 1.01 qw(open3);
 use IPC::Signal 1.00 qw(sig_name);
 use IO::Handle 1.12;
@@ -29,10 +28,9 @@ use IO::Poll 0.01 qw(POLLIN POLLOUT POLLERR POLLHUP);
 use POSIX qw(_exit);
 use Symbol qw(gensym);
 
-our $VERSION = "0.001";
+our $VERSION = "0.002";
 
-our @ISA = qw(Exporter);
-
+use base "Exporter";
 our @EXPORT_OK = qw(filter);
 
 =head1 FUNCTIONS
@@ -79,7 +77,9 @@ sub filter($@) {
 	# We avoid nastiness by catching the exception ourselves and
 	# doing the right thing.
 	my $parent_pid = $$;
-	my $child_pid = eval { open3($stdin, $stdout, $stderr, @_) };
+	my $child_pid = eval { local $SIG{__DIE__};
+		open3($stdin, $stdout, $stderr, @_);
+	};
 	if($@ ne "") {
 		my $err = $@;
 		die $err if $$ == $parent_pid;
@@ -163,7 +163,9 @@ Andrew Main (Zefram) <zefram@fysh.org>
 
 =head1 COPYRIGHT
 
-Copyright (C) 2004 Andrew Main (Zefram) <zefram@fysh.org>
+Copyright (C) 2004, 2007 Andrew Main (Zefram) <zefram@fysh.org>
+
+=head1 LICENSE
 
 This module is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

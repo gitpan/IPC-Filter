@@ -1,3 +1,23 @@
+version 0.002; 2007-09-17
+
+  * bugfix: override any ambient $SIG{__DIE__} handler when using eval { }
+
+  * use "base" pragma to import Exporter behaviour
+
+  * on non-Unix OSes, skip tests that rely on Unix commands
+
+  * test POD syntax and coverage
+
+  * corrected synopsis
+
+  * build with Module::Build instead of ExtUtils::MakeMaker
+
+  * complete dependency list
+
+  * include signature in distribution
+
+  * in documentation, separate "license" section from "copyright" section
+
 version 0.001; 2004-10-29
 
   * include copyright notice in lib/IPC/Filter.pm

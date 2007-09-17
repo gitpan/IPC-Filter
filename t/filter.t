@@ -1,6 +1,12 @@
-use Test::More tests => 14;
+use Module::Build 0.2808;
+use Test::More;
 
-BEGIN { use_ok "IPC::Filter", qw(filter); }
+BEGIN {
+	plan skip_all => "these tests rely on Unix commands"
+		unless Module::Build->is_unixish;
+	plan tests => 14;
+	use_ok "IPC::Filter", qw(filter);
+}
 
 my($result, $err);
 

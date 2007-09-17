@@ -1,14 +1,38 @@
-# http://module-build.sourceforge.net/META-spec.html
-#XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
-name:         IPC-Filter
-version:      0.001
-version_from: lib/IPC/Filter.pm
-installdirs:  site
+---
+name: IPC-Filter
+version: 0.002
+author:
+  - 'Andrew Main (Zefram) <zefram@fysh.org>'
+abstract: filter data through an external process
+license: perl
+resources:
+  license: http://dev.perl.org/licenses/
 requires:
-    Errno:                         1.00
-    IO::Handle:                    1.12
-    IO::Poll:                      0.01
-    IPC::Signal:                   1.00
-
+  Errno: 1.00
+  Exporter: 0
+  IO::Handle: 1.12
+  IO::Poll: 0.01
+  IPC::Open3: 1.01
+  IPC::Signal: 1.00
+  POSIX: 0
+  Symbol: 0
+  base: 0
+  perl: 5.006
+  strict: 0
+  warnings: 0
+build_requires:
+  Module::Build: 0.2808
+  Test::More: 0
+  perl: 5.006
+  strict: 0
+  warnings: 0
+dynamic_config: 0
+provides:
+  IPC::Filter:
+    file: lib/IPC/Filter.pm
+    version: 0.002
+generated_by: Module::Build version 0.2808
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2
 distribution_type: module
-generated_by: ExtUtils::MakeMaker version 6.17
