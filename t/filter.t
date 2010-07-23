@@ -1,3 +1,6 @@
+use warnings;
+use strict;
+
 use Module::Build 0.2808;
 use Test::More;
 
@@ -26,23 +29,25 @@ test_filter("foo\n", "cat");
 is($err, "");
 is($result, "foo\n");
 
-test_filter("foo\n", "tr", "a-z", "A-Z");
+test_filter("foo\n", "tr", "abfor", "ABFOR");
 is($err, "");
 is($result, "FOO\n");
 
-test_filter("foo\n", "tr a-z A-Z");
+test_filter("foo\n", "tr abfor ABFOR");
 is($err, "");
 is($result, "FOO\n");
 
-test_filter("foo\n", "tr a-z A-Z; echo bar");
+test_filter("foo\n", "tr abfor ABFOR; echo bar");
 is($err, "");
 is($result, "FOO\nbar\n");
 
-test_filter("foo\n", "false");
+test_filter("foo\n", "{ exit 1; }");
 is($err, "filter: process exited with status 1\n");
 
-test_filter("foo\n", "echo >&2 bar; false");
+test_filter("foo\n", "echo >&2 bar; exit 1");
 is($err, "filter: process exited with status 1\nbar\n");
 
 test_filter("foo\n", "echo >&2 bar; kill \$\$");
 is($err, "filter: process died on SIGTERM\n");
+
+1;

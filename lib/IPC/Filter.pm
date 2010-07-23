@@ -17,6 +17,7 @@ external command, thus providing filtering in non-pipeline situations.
 
 package IPC::Filter;
 
+{ use 5.006; }
 use warnings;
 use strict;
 
@@ -28,9 +29,9 @@ use IO::Poll 0.01 qw(POLLIN POLLOUT POLLERR POLLHUP);
 use POSIX qw(_exit);
 use Symbol qw(gensym);
 
-our $VERSION = "0.002";
+our $VERSION = "0.003";
 
-use base "Exporter";
+use parent "Exporter";
 our @EXPORT_OK = qw(filter);
 
 =head1 FUNCTIONS
@@ -163,7 +164,7 @@ Andrew Main (Zefram) <zefram@fysh.org>
 
 =head1 COPYRIGHT
 
-Copyright (C) 2004, 2007 Andrew Main (Zefram) <zefram@fysh.org>
+Copyright (C) 2004, 2007, 2010 Andrew Main (Zefram) <zefram@fysh.org>
 
 =head1 LICENSE
 
