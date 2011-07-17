@@ -1,3 +1,11 @@
+version 0.004; 2011-07-17
+
+  * revise signal test to avoid shell signal trapping
+
+  * include META.json in distribution
+
+  * add MYMETA.json to .cvsignore
+
 version 0.003; 2010-07-23
 
   * revise tests to work with funny SysV tr and false

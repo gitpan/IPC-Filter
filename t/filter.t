@@ -47,7 +47,7 @@ is($err, "filter: process exited with status 1\n");
 test_filter("foo\n", "echo >&2 bar; exit 1");
 is($err, "filter: process exited with status 1\nbar\n");
 
-test_filter("foo\n", "echo >&2 bar; kill \$\$");
-is($err, "filter: process died on SIGTERM\n");
+test_filter("foo\n", "echo >&2 bar; kill -9 \$\$");
+is($err, "filter: process died on SIGKILL\n");
 
 1;
